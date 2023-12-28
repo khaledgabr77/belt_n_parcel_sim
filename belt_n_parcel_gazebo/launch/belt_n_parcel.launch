@@ -10,4 +10,5 @@
 
 	<node name="parcels_spawner" pkg="belt_n_parcel_gazebo" type="parcels.py" output="screen"/>
 	
+	<include file="$(find realsense_ros_gazebo)/launch/simulation.launch"/>
 </launch>
