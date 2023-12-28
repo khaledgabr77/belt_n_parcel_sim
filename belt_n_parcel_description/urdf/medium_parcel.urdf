@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <robot name="medium_parcel">
-	<!-- <link name="world" />
+	<!-- <link name="base_link" />
 
 	<joint name="fixed" type="fixed">
-		<parent link="world"/>
-		<child link="parcel_1"/>
-		<origin xyz="0.0 0.0 0.745982" rpy="0.0 0.0 0"/>
+		<parent link="base_link"/>
+		<child link="medium_parcel_1"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0"/>
 	</joint> -->
 
   <link name="medium_parcel_1">
@@ -15,18 +15,18 @@
       <inertia ixx="4.166666666666668e-05" ixy="0.0" ixz="0.0" iyy="4.166666666666668e-05" iyz="0.0" izz="4.166666666666668e-05"/>
     </inertial>
     <visual>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0.0 0.0 0.55" xyz="0.0 0.0 0.0"/>
       <geometry>
-        <box size="0.1 0.1 0.003"/>
+        <box size="0.1 0.1 0.008"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0.0 0.0 0.5" xyz="0.0 0.0 0.0"/>
       <geometry>
-        <box size="0.1 0.1 0.003"/>
+        <box size="0.1 0.1 0.008"/>
       </geometry>
     </collision>
   </link>
@@ -43,10 +43,43 @@
     <visual>
       <origin rpy="0.0 0.0 0.7" xyz="0.0 0.0 0.0"/>
       <geometry>
-        <box size="0.1 0.1 0.003"/>
+        <box size="0.1 0.1 0.005"/>
       </geometry>
       <material name="red">
         <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.7" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.1 0.1 0.005"/>
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="medium_parcel_2">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <joint name="lower_parcel_joint" type="fixed">
+		<origin xyz="0.05 0.01 0.003" rpy="0.0 0.0 0.0"/>
+		<parent link="medium_parcel_1"/>
+		<child link="medium_parcel_2"/>
+		<axis xyz="0 0 0"/>
+	</joint>
+
+    <link name="medium_parcel_3">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.1"/>
+      <inertia ixx="4.166666666666668e-05" ixy="0.0" ixz="0.0" iyy="4.166666666666668e-05" iyz="0.0" izz="4.166666666666668e-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.7" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.1 0.1 0.003"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1"/>
       </material>
     </visual>
     <collision>
@@ -56,14 +89,14 @@
       </geometry>
     </collision>
   </link>
-  <gazebo reference="medium_parcel_2">
-    <material>Gazebo/Red</material>
+  <gazebo reference="medium_parcel_3">
+    <material>Gazebo/Green</material>
   </gazebo>
 
-  <joint name="medium_parcel_joint" type="fixed">
-		<origin xyz="0.05 0.05 0.003" rpy="0.0 0.0 0.0"/>
-		<parent link="medium_parcel_1"/>
-		<child link="medium_parcel_2"/>
+  <joint name="upper_parcel_joint" type="fixed">
+		<origin xyz="-0.01 0.01 0.003" rpy="0.0 0.0 0.0"/>
+		<parent link="medium_parcel_2"/>
+		<child link="medium_parcel_3"/>
 		<axis xyz="0 0 0"/>
 	</joint>
 </robot>
