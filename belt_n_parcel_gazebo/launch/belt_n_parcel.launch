@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="gui" value="true" />
+	</include>
+
+	<group ns="conveyor">
+		<node name="spawn_model_belt" pkg="gazebo_ros" type="spawn_model" args="-file $(find belt_n_parcel_description)/urdf/conveyor.urdf -urdf -model conveyor_belt" respawn="false" output="screen" />
+	</group>
+
+	<node name="parcels_spawner" pkg="belt_n_parcel_gazebo" type="parcels.py" output="screen"/>
+	
+</launch>
